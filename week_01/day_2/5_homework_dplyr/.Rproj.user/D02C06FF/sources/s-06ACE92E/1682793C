@@ -1,0 +1,32 @@
+{
+    "id": "1682793C",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1603263310024.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "expression": "starbucks_drinks_menu",
+        "caption": "starbucks_drinks_menu",
+        "totalObservations": 242,
+        "displayedObservations": 242,
+        "variables": 18,
+        "cacheKey": "9C6D8BB2",
+        "object": "starbucks_drinks_menu",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=starbucks_drinks_menu&cache_key=9C6D8BB2&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 4534699814,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1603263310024,
+    "read_only": false,
+    "read_only_alternatives": []
+}
