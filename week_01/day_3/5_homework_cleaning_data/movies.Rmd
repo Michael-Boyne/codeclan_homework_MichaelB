@@ -1,0 +1,106 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+kaggle <- read_csv("data/movies.csv")
+```
+
+```{r}
+kaggle
+```
+
+
+1 MVP
+
+Question 1.
+
+After you’ve read in the data and assigned it to a variable with a useful name, investigate it. Write down some ideas for what you could do to further investigate/clean this data using what you’ve learned today (no need to code it though, just jot down thoughts and ideas). Feel free to also write down any general thoughts you get looking at the data - this task is just to get you thinking about data and data cleaning/prepping.
+
+
+* The types of things I would look to clean would include things like cleaning column format, searching for missing values. Changing those missing values by either changing them to a median or mean, or even completely removing those factors. Removing unnecessary columns that essentially provide no analytical data or may in this case be a repeat of data with "original title" and "title". 
+
+
+Question 2.
+
+A lot of interesting stuff in there! But for now, we are only interested in the movies’ titles, their runtime as well as their budget. Select the three columns that contain this information and save them into a new variable called movies_selected. Hint: you will have to make a choice between original_title and title.
+
+```{r}
+movies_selected <- kaggle %>%
+  select(title, runtime, budget)
+movies_selected
+```
+
+
+Question 3.
+
+Ok, now take your subsetted data movies_selected, and count the number of missing values in each column.
+
+```{r}
+movies_selected %>%
+  summarise(count = sum(is.na(runtime)))
+movies_selected %>%
+  summarise(count = sum(is.na(budget)))
+```
+
+
+Question 4.
+
+There’s not too many NAs, but there are actually quite a few movies with a runtime of 0 in this dataset. Since it’s impossible for a movie to have a runtime of 0, use the function na_if to convert runtimes of length 0 into NAs. Save this into a new variable called movies_runtime. Then count how many missing values there are now in the column runtime.
+
+```{r}
+movies_runtime <- movies_selected %>%
+  mutate(runtime = na_if(runtime, "0"))
+movies_runtime
+
+```
+```{r}
+movies_runtime %>%
+  summarise(count = sum(is.na(runtime)))
+  
+```
+
+
+Question 5.
+
+Impute the missing values in runtime with the median runtime using coalesce and save this into a new variable called movies_imputed. There should now be no missing values in the column runtime - check this to make sure.
+
+```{r}
+movies_imputed <- movies_runtime %>%
+  mutate(runtime = coalesce(runtime, median(runtime, na.rm = TRUE)))
+movies_imputed
+```
+
+```{r}
+movies_imputed %>%
+  summarise(count = sum(is.na(runtime)))
+```
+
+
+Question 6.
+
+Finally, use the slice_min and slice_max functions on movies_imputed to get the movies with the 10 shortest and 10 longest runtimes.
+
+```{r}
+movies_imputed %>%
+  slice_min(runtime, n = 10)
+movies_imputed %>%
+  slice_max(runtime, n = 10)
+```
+
+
+Question 7.
+
+Using the if_else function, impute anything with a budget below $100 with the median budget. Overwrite your movies_imputed so it contains the new budget values.
+
+```{r}
+movies_imputed %>%
+  select(budget) %>%
+  mutate(budget = if_else(budget < 100, median(budget), budget))
+```
+

@@ -1,2 +1,0 @@
-"0","drinks_and_prep <- select(starbucks_drinks_menu, Beverage:Calories)"
-"0","drinks_and_prep"

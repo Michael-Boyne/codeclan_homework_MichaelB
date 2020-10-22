@@ -1,4 +1,0 @@
-"0","drinks_grouped <- group_by(drinks_and_prep, Beverage_prep)"
-"0","summarise(drinks_grouped, mean_of_calories = mean(Calories))"
-"2","`summarise()` ungrouping output (override with `.groups` argument)
-"
