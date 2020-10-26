@@ -42,10 +42,10 @@ Question 3.
 Ok, now take your subsetted data movies_selected, and count the number of missing values in each column.
 
 ```{r}
-movies_selected %>%
-  summarise(count = sum(is.na(runtime)))
-movies_selected %>%
-  summarise(count = sum(is.na(budget)))
+movies_selected %>% 
+  summarise(na_runtime = sum(is.na(runtime)),
+            na_title = sum(is.na(title)),
+            na_budget = sum(is.na(budget)))
 ```
 
 

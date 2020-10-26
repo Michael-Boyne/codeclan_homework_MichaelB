@@ -1,0 +1,102 @@
+---
+title: "R Notebook"
+output:
+  html_document:
+    df_print: paged
+---
+```{r}
+library(tidyverse)
+library(dplyr)
+```
+
+```{r}
+books <- read_csv("data/books.csv")
+```
+
+
+
+```{r}
+dim(books)
+```
+
+```{r}
+str(books)
+```
+
+```{r}
+names(books)
+```
+
+```{r}
+books
+```
+
+
+# Searching for na values
+
+```{r}
+books %>% 
+  filter(is.na(authors))
+books %>%
+  filter(is.na(average_rating))
+```
+
+# Renaming columns 
+
+```{r}
+rename_books_col <- books %>%
+  rename(book_id = bookID)
+```
+
+# Removing na values.
+
+```{r}
+books_no_na <- rename_books_col %>%
+  filter_at(vars(book_id:publisher),
+            all_vars(!is.na(.)))
+
+```
+
+# Top 10 highest rated books, with over 100 rating_count.
+
+```{r}
+top_rated_books <- books_no_na %>%
+  select(title, authors, average_rating, ratings_count) %>%
+  arrange(desc(average_rating)) %>%
+  filter(ratings_count >= 100)
+  head(10)
+
+top_rated_books
+```
+
+# Books with over 1000 pages 
+
+```{r}
+over_two_thousand <- books_no_na %>%
+  select(title, num_pages) %>%
+  arrange(desc(num_pages)) %>%
+  filter(num_pages >= 2000)
+
+over_two_thousand
+```
+
+# Number of books by each author.
+
+```{r}
+book_count <- books_no_na %>%
+  count(authors)
+book_count
+
+```
+
+# Average pages for a publisher
+
+```{r}
+avg_page_pub <- books_no_na %>%
+  group_by(publisher) %>%
+  summarise(avg_num_pages = mean(num_pages))
+avg_page_pub
+```
+
+
+
