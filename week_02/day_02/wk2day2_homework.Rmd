@@ -1,0 +1,91 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+```
+
+
+```{r}
+tweets <- read_csv("data/code_clan_tweets.csv")
+```
+
+
+# 3 MVP
+
+1. Load the code_clan_tweets.csv data. Find the number of rows, columns, and list all the variable names.
+
+```{r}
+dim(tweets)
+names(tweets)
+```
+
+2. Find the total number of favourited tweets (stored in favorite_count) that CodeClan tweets have got. Don’t add a tweet’s favorite_count to the total when the tweet was quoted (see the is_quote variable).
+
+```{r}
+no_na <- tweets %>%
+  mutate(is_quote = na_if(is_quote, TRUE)) %>%
+  drop_na(is_quote)
+
+favourite_count <- sum(no_na$favorite_count)
+
+favourite_count
+```
+
+
+3. Summarise the mean number of retweets (retweet_count), split by the type of platform that was used to tweet (source). Again, omit quoted tweets from the mean.
+
+```{r}
+retweet_count <- tweets %>%
+  group_by(source) %>%
+  mutate(is_quote = na_if(is_quote, TRUE)) %>%
+  drop_na(is_quote) %>%
+  summarise(mean_retweets = mean(retweet_count))
+retweet_count
+```
+
+
+4. Count the total number of likes (i.e. total of favorite_count), split by media type, and arrange them from most likes to least. Assume that any tweets without a listed media type are of type “text”.
+
+```{r}
+tweets %>%
+  summarise()
+```
+
+
+5. Find the mean number of characters that a CodeClan tweet contains.
+
+
+```{r}
+number_of_char <- tweets %>%
+  select(text) %>%
+  nchar()
+number_of_char
+  
+```
+
+
+6. The code_clan_info.csv data file contains status_url along with other info. Load this in, and join it to the code_clan_tweets tibble, so that you have a status_url for each tweet. Decide which variable to join the tibbles on.
+
+```{r}
+code_clan_info <- read_csv("data/code_clan_info.csv")
+```
+
+```{r}
+tweet_info <- left_join(tweets, code_clan_info, "tweet_id")
+```
+
+
+7. From your new joined data, create a new tibble codeclan_hashtags containing only the tweet_id and hashtags in lowercase for analysis. Keep only those tweets with hashtags.
+
+```{r}
+codeclan_hashtags <- tweet_info %>%
+  mutate(hashtags_lower = str_to_lower(hashtags)) %>%
+  select(tweet_id, hashtags_lower) %>%
+  na.omit
+
+codeclan_hashtags
+```
+

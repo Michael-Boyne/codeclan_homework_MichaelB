@@ -127,6 +127,13 @@ date_hat_observations <- tidy_hat_observations %>%
         sep = "/"
 )
 
+date_hat_observations %>% 
+  filter(hat_type == "beret") %>% 
+  group_by(date) %>% 
+  summarise(total = sum(observation_count)) %>% 
+  slice_max(total)
+
+
 date_hat_observations
 ```
 
