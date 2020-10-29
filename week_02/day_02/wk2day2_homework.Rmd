@@ -59,10 +59,9 @@ tweets %>%
 
 
 ```{r}
-number_of_char <- tweets %>%
-  select(text) %>%
-  nchar()
-number_of_char
+tweets %>%
+  summarise(avg_tweet_length = mean(display_text_width))
+
   
 ```
 
