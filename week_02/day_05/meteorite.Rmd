@@ -1,0 +1,147 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+meteorite_landings <- read_csv("data/meteorite_landings.csv")
+```
+
+# 1.1 The .R file
+
+* 1. Read the data into R
+
+```{r}
+str(meteorite_landings)
+```
+
+```{r}
+head(meteorite_landings, 20)
+```
+
+* 2. Change the names of the variables to follow our naming standards.
+
+```{r}
+renamed_meteorite <- meteorite_landings %>%
+  rename(
+    meteorite_id = id,
+    meteorite_name = name,
+    mass_in_grams = 'mass (g)',
+    geo_location = GeoLocation
+  )
+```
+
+* 3. Split in column GeoLocation into latitude and longitude, the new latitude and longitude columns should be numeric.
+
+```{r}
+meteorite_wider <- renamed_meteorite %>%
+  separate(geo_location, c("latitude", "longitude"), sep = ",")
+
+head(meteorite_wider)
+```
+
+```{r}
+remove_meteorite <- meteorite_wider %>%
+  mutate(latitude = str_remove_all(latitude, "\\(")) %>%
+  mutate(longitude = str_remove_all(longitude, "\\)"))
+
+remove_meteorite
+  
+```
+
+
+* 4. Replace any missing values in latitude and longitude with zeros.
+
+```{r}
+zero_meteorite <- remove_meteorite %>%
+  replace_na(list(latitude = 0, longitude = 0))
+zero_meteorite
+```
+
+* 5. Remove meteorites less than 1000g in weight from the data.
+
+```{r}
+thousand_meteorite <- zero_meteorite %>%
+  filter(mass_in_grams > 1000)
+thousand_meteorite
+```
+
+* 6. Order the data by the year of discovery.
+
+```{r}
+ordered_meteorite <- thousand_meteorite %>%
+  arrange(desc(year))
+
+ordered_meteorite
+```
+
+# data range check.
+
+* The data has the variable names we expect (“id”, “name”, “mass (g)”, “fall”, “year”, “GeoLocation”).
+
+* Latitude and longitude are valid values. (Latitude between -90 and 90, longitude between -180 and 180)
+
+```{r}
+numeric_meteorite <- ordered_meteorite %>%
+  transform(latitude = as.numeric(latitude),
+            longitude = as.numeric(longitude))
+```
+
+```{r}
+filtered_meteorite <- numeric_meteorite %>%
+  filter(latitude >= -90) %>%
+  filter(latitude <= 90) %>%
+  filter(longitude >= -180) %>%
+  filter(longitude <= 180)
+```
+
+# 1.2 The .Rmd file 
+
+* 1. Read the cleaned data into R.
+
+```{r}
+filtered_meteorite
+```
+
+
+* 2. Find the names and years found for the 10 largest meteorites in the data.
+
+```{r}
+top_ten_meteorites <- filtered_meteorite %>%
+  slice_max(mass_in_grams, n = 10) %>%
+  select(meteorite_name, mass_in_grams, year)
+
+top_ten_meteorites
+```
+
+
+* 3. Find the average mass of meteorites that were recorded falling, vs. those which were just found.
+
+```{r}
+avg_meteorite <- filtered_meteorite %>%
+  group_by(fall) %>%
+  summarise(avg_meteorite_size = mean(mass_in_grams))
+
+avg_meteorite
+```
+
+
+* 4. Find the number of meteorites in each year, for every year since 2000.
+
+```{r}
+yearly_meteorite <- filtered_meteorite %>%
+  group_by(year) %>%
+  filter(year > 2000) %>%
+  tally() %>%
+  arrange(desc(n))
+
+yearly_meteorite
+
+```
+
+
+
