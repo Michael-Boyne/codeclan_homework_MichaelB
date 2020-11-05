@@ -47,7 +47,8 @@ SELECT
 	COUNT(e.id) AS employee_number
 FROM teams AS t LEFT JOIN employees AS e
 ON t.id = e.team_id 
-GROUP BY t.name;
+GROUP BY t.name
+ORDER BY employee_number ASC;
 
 -- 5. The effective_salary of an employee is defined as their fte_hours multiplied
 -- by their salary. Get a table for each employee showing their id, first_name, last_name,
