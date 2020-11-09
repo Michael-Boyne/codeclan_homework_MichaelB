@@ -103,10 +103,10 @@ SELECT
 	e.id,
 	e.first_name,
 	e.last_name,
-	(48 * 35 * CAST(charge_cost AS INT) - salary) * fte_hours AS expected_profit
+	(48 * 35 * CAST(t.charge_cost AS INT) - e.salary) * e.fte_hours AS expected_profit
 FROM employees AS e LEFT JOIN teams AS t 
-	ON e.team_id = t.id 
-ORDER BY expected_profit NULLS LAST;
+ON e.team_id = t.id 
+ORDER BY e.last_name ASC NULLS LAST;
 
 	
 -- 12. [Tough] Get a list of the id, first_name, last_name, salary and fte_hours of employees in the
@@ -133,6 +133,26 @@ SELECT
 	(e.fte_hours / b.avg_fte_hours) AS hours_ratio
 FROM employees AS e CROSS JOIN bananas AS b
 WHERE e.department = b.department;
+
+-- OR
+
+SELECT 
+	id, 
+	first_name, 
+	last_name, 
+	salary,
+	fte_hours,
+	department,
+	salary/AVG(salary) OVER () AS ratio_avg_salary,
+	fte_hours/AVG(fte_hours) OVER () AS ratio_fte_hours
+FROM employees
+WHERE department = (
+	SELECT
+	department
+FROM employees 
+GROUP BY department
+ORDER BY COUNT(id) DESC
+LIMIT 1);
 
 
 -- 2 Extension Questions
