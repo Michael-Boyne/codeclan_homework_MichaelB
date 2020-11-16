@@ -1,0 +1,41 @@
+---
+title: "beer"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(stringr)
+library(readr)
+```
+
+```{r}
+beer <- read.delim("data/beer.txt", sep = ";")
+```
+
+```{r}
+str(beer)
+```
+
+# 3 Missing values exercise
+
+1. Find all the observations where the carbohydrates are missing.
+
+```{r}
+beer[is.na(beer$carbohydrates),]
+```
+
+
+2. Find all the observations where the brand is missing.
+
+```{r}
+beer[is.na(beer$brand),]
+```
+
+
+3. What is different about the observations missing carbohydrates and the observations missing brand? To clean the data should be drop the rows missing brand or the rows missing carbohydrates?
+
+There is essentially fully incomplete rows where there are missing brands. 
+dropping the the rows with missing brand would be a better idea. 
+
+
