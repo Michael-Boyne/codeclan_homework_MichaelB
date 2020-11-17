@@ -52,17 +52,15 @@ inmates %>%
 3a. Make a new variable bond_level which is High whenever the bond for an inmate is above $1,000,000 and Normal otherwise.
 
 ```{r}
-bond_level_inmates <- inmates %>%
-  mutate(bond_level = recode(bond_amount,
-                             '1000000' = "High",
-                             '2000' = "Normal"))
+inmates <- mutate(inmates, bond_level = if_else(bond_amount > 1000000, 'High', 'Normal'))
+inmates
 ```
 
 
 3b. How many inmates have a high bond level?
 
 ```{r}
-
+sum(inmates$bond_level == 'High')
 ```
 
 
