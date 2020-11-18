@@ -1,0 +1,104 @@
+---
+title: "homework_week05_day02"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(CodeClanData)
+```
+
+```{r}
+qb_revenue_breakdown
+qb_monthly_sales
+qb_competitors
+qb_device_data
+```
+# 4.1 Part 1
+
+1. Take the data in the dataset qb_revenue_breakdown and make a stacked bar chart showing the sources of revenue across the two years in the dataset.
+```{r}
+col_scheme <- c("#E89FE9", "#50434F", "#B6A7B5", "#F9A472", "#BD7040")
+
+ggplot(qb_revenue_breakdown) +
+  aes(x = Year, y = Revenue, fill = Product) +
+  theme_light() +
+  labs(x = "Year", y = "Revenue (£)") +
+  scale_fill_manual(values = col_scheme) +
+  geom_col() 
+```
+
+
+2. Make a line chart showing monthly sales of the “flagship product” - the KwikBit Unit1 - over the last year. This data is inside qb_monthly_sales, but you will need to use subset.
+
+```{r}
+flagship_product <- qb_monthly_sales %>%
+  filter(Cashflow == "Kwikbit Unit 1 Sales")
+  
+ggplot(flagship_product) +
+  aes(x = Date, y = Amount) +
+  theme_light() +
+  labs(x = "Date", y = "Money in (£)", title = "Kwikbit Unit 1 Sales") +
+  geom_line() +
+  geom_point()
+  
+```
+
+
+3. Make a line chart showing monthly revenue and costs over the last year. This data is also in qb_monthly_sales.
+
+```{r}
+cost_and_revenue <- qb_monthly_sales %>% 
+  filter(Cashflow != "Kwikbit Unit 1 Sales")
+
+ggplot(cost_and_revenue) +
+  aes(x = Date, y = Amount, colour = Cashflow) +
+  scale_colour_manual(values = c("#E89FE9", "#50434F")) +
+  theme_light() +
+  labs(x = "Date", y = "Money in (£)", title = "Total Revenue / Cost") +
+  geom_line() +
+  geom_point()
+```
+
+
+4. Show annual sales of personal fitness trackers over the last 5 years broken down by company as a ribbon plot (use geom_area). This data is in qb_competitors.
+
+```{r}
+ggplot(qb_competitors) +
+  aes(x = Year, y = Revenue, colour = Company) +
+  theme_light() +
+  geom_area() 
+  
+```
+
+
+5. Now show the sales from the 5 competitors as a line graph. Include an extra layer that shows the data points used to make the lines.
+
+```{r}
+ggplot(qb_competitors) +
+  aes(x = Year, y = Revenue, colour = Company) +
+  scale_colour_manual(values = col_scheme) +
+  theme_light() +
+  labs(x = "Year", y = "Revenue in (£)", title = "Company Revenues") +
+  geom_line() +
+  geom_point()
+```
+
+
+6. Now the company wants to compare the number of steps that their device counts vs. their competitors. Make a line graph of the number of steps throughout time, and use faceting to compare between individuals and people. Data is in qb_device_data.
+
+```{r}
+ggplot(qb_device_data) +
+  aes(x = hours, y = counts, colour = id, group = id) +
+  scale_colour_manual(values = col_scheme) +
+  theme_light() +
+  labs(x = "Hours", y = "Step count", title = "Comparing Steps") +
+  geom_line() +
+  facet_grid(~ id)
+  
+```
+
+# 4.2 Part 2
+
+
+
