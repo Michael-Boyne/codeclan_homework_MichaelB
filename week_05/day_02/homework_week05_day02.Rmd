@@ -30,7 +30,6 @@ ggplot(qb_revenue_breakdown) +
 
 
 2. Make a line chart showing monthly sales of the “flagship product” - the KwikBit Unit1 - over the last year. This data is inside qb_monthly_sales, but you will need to use subset.
-
 ```{r}
 flagship_product <- qb_monthly_sales %>%
   filter(Cashflow == "Kwikbit Unit 1 Sales")
@@ -53,7 +52,7 @@ cost_and_revenue <- qb_monthly_sales %>%
 
 ggplot(cost_and_revenue) +
   aes(x = Date, y = Amount, colour = Cashflow) +
-  scale_colour_manual(values = c("#E89FE9", "#50434F")) +
+  scale_colour_manual(values = c("#E89FE9", "#BD7040")) +
   theme_light() +
   labs(x = "Date", y = "Money in (£)", title = "Total Revenue / Cost") +
   geom_line() +
@@ -65,7 +64,8 @@ ggplot(cost_and_revenue) +
 
 ```{r}
 ggplot(qb_competitors) +
-  aes(x = Year, y = Revenue, colour = Company) +
+  aes(x = Year, y = Revenue, fill = Company) +
+  scale_fill_manual(values = col_scheme) +
   theme_light() +
   geom_area() 
   
@@ -88,17 +88,23 @@ ggplot(qb_competitors) +
 6. Now the company wants to compare the number of steps that their device counts vs. their competitors. Make a line graph of the number of steps throughout time, and use faceting to compare between individuals and people. Data is in qb_device_data.
 
 ```{r}
+qb_device_data <- 
+mutate(qb_device_data, decimal_hour = hours + (mins/60))
+
 ggplot(qb_device_data) +
-  aes(x = hours, y = counts, colour = id, group = id) +
+  aes(x = decimal_hour, y = counts, colour = device) +
+  geom_line() + 
+  scale_x_continuous("Time (hours)") +
+  scale_y_continuous("Steps") +
+  facet_grid(id ~ device) +
   scale_colour_manual(values = col_scheme) +
   theme_light() +
-  labs(x = "Hours", y = "Step count", title = "Comparing Steps") +
-  geom_line() +
-  facet_grid(~ id)
+  ggtitle("Comparison between KwikBit Unit1 and Competitors for 5 individuals")
   
 ```
 
-# 4.2 Part 2
+
+
 
 
 
