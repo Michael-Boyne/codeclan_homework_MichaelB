@@ -1,0 +1,292 @@
+constituency,party,vote_count
+Aberdeen North,snp_votes,20205
+Aberdeen North,con_votes,7535
+Aberdeen North,lab_votes,4939
+Aberdeen North,ld_votes,2846
+Aberdeen North,grn_votes,880
+Aberdeen North,brex_votes,1008
+Aberdeen South,snp_votes,20388
+Aberdeen South,con_votes,16398
+Aberdeen South,lab_votes,3834
+Aberdeen South,ld_votes,5018
+Airdrie and Shotts,snp_votes,17929
+Airdrie and Shotts,con_votes,7011
+Airdrie and Shotts,lab_votes,12728
+Airdrie and Shotts,ld_votes,1419
+Airdrie and Shotts,grn_votes,685
+Angus,snp_votes,21216
+Angus,con_votes,17421
+Angus,lab_votes,2051
+Angus,ld_votes,2482
+Argyll and Bute,snp_votes,21040
+Argyll and Bute,con_votes,16930
+Argyll and Bute,lab_votes,3248
+Argyll and Bute,ld_votes,6832
+"Ayr, Carrick and Cumnock",snp_votes,20272
+"Ayr, Carrick and Cumnock",con_votes,17943
+"Ayr, Carrick and Cumnock",lab_votes,6219
+"Ayr, Carrick and Cumnock",ld_votes,2158
+Banff and Buchan,snp_votes,17064
+Banff and Buchan,con_votes,21182
+Banff and Buchan,lab_votes,1734
+Banff and Buchan,ld_votes,2280
+"Berwickshire, Roxburgh and Selkirk",snp_votes,20599
+"Berwickshire, Roxburgh and Selkirk",con_votes,25747
+"Berwickshire, Roxburgh and Selkirk",lab_votes,2513
+"Berwickshire, Roxburgh and Selkirk",ld_votes,4287
+"Caithness, Sutherland and Easter Ross",snp_votes,11501
+"Caithness, Sutherland and Easter Ross",con_votes,5176
+"Caithness, Sutherland and Easter Ross",lab_votes,1936
+"Caithness, Sutherland and Easter Ross",ld_votes,11705
+"Caithness, Sutherland and Easter Ross",brex_votes,1139
+Central Ayrshire,snp_votes,21486
+Central Ayrshire,con_votes,16182
+Central Ayrshire,lab_votes,6583
+Central Ayrshire,ld_votes,2283
+"Coatbridge, Chryston and Bellshill",snp_votes,22680
+"Coatbridge, Chryston and Bellshill",con_votes,6113
+"Coatbridge, Chryston and Bellshill",lab_votes,17056
+"Coatbridge, Chryston and Bellshill",ld_votes,1564
+"Coatbridge, Chryston and Bellshill",grn_votes,808
+"Cumbernauld, Kilsyth and Kirkintilloch East",snp_votes,24158
+"Cumbernauld, Kilsyth and Kirkintilloch East",con_votes,7380
+"Cumbernauld, Kilsyth and Kirkintilloch East",lab_votes,11182
+"Cumbernauld, Kilsyth and Kirkintilloch East",ld_votes,2966
+Dumfries and Galloway,snp_votes,20873
+Dumfries and Galloway,con_votes,22678
+Dumfries and Galloway,lab_votes,4745
+Dumfries and Galloway,ld_votes,3133
+"Dumfriesshire, Clydesdale and Tweeddale",snp_votes,18830
+"Dumfriesshire, Clydesdale and Tweeddale",con_votes,22611
+"Dumfriesshire, Clydesdale and Tweeddale",lab_votes,4172
+"Dumfriesshire, Clydesdale and Tweeddale",ld_votes,3540
+Dundee East,snp_votes,24361
+Dundee East,con_votes,10986
+Dundee East,lab_votes,6045
+Dundee East,ld_votes,3573
+Dundee East,oth_votes,312
+Dundee West,snp_votes,22355
+Dundee West,con_votes,5149
+Dundee West,lab_votes,10096
+Dundee West,ld_votes,2468
+Dundee West,brex_votes,1271
+Dundee West,oth_votes,240
+Dunfermline and West Fife,snp_votes,23727
+Dunfermline and West Fife,con_votes,11207
+Dunfermline and West Fife,lab_votes,13028
+Dunfermline and West Fife,ld_votes,4262
+Dunfermline and West Fife,grn_votes,1258
+East Dunbartonshire,snp_votes,19672
+East Dunbartonshire,con_votes,7455
+East Dunbartonshire,lab_votes,4839
+East Dunbartonshire,ld_votes,19523
+East Dunbartonshire,grn_votes,916
+East Dunbartonshire,ukip_votes,208
+East Dunbartonshire,oth_votes,418
+"East Kilbride, Strathaven and Lesmahagow",snp_votes,26113
+"East Kilbride, Strathaven and Lesmahagow",con_votes,11961
+"East Kilbride, Strathaven and Lesmahagow",lab_votes,12791
+"East Kilbride, Strathaven and Lesmahagow",ld_votes,3760
+"East Kilbride, Strathaven and Lesmahagow",grn_votes,1153
+"East Kilbride, Strathaven and Lesmahagow",ukip_votes,559
+East Lothian,snp_votes,21156
+East Lothian,con_votes,15523
+East Lothian,lab_votes,17270
+East Lothian,ld_votes,4071
+East Lothian,ukip_votes,493
+East Renfrewshire,snp_votes,24877
+East Renfrewshire,con_votes,19451
+East Renfrewshire,lab_votes,6855
+East Renfrewshire,ld_votes,4174
+Edinburgh East,snp_votes,23165
+Edinburgh East,con_votes,6549
+Edinburgh East,lab_votes,12748
+Edinburgh East,ld_votes,3289
+Edinburgh East,grn_votes,2064
+Edinburgh North and Leith,snp_votes,25925
+Edinburgh North and Leith,con_votes,11000
+Edinburgh North and Leith,lab_votes,13117
+Edinburgh North and Leith,ld_votes,6635
+Edinburgh North and Leith,grn_votes,1971
+Edinburgh North and Leith,brex_votes,558
+Edinburgh North and Leith,oth_votes,138
+Edinburgh South,snp_votes,12650
+Edinburgh South,con_votes,8161
+Edinburgh South,lab_votes,23745
+Edinburgh South,ld_votes,3819
+Edinburgh South,grn_votes,1357
+Edinburgh South West,snp_votes,24830
+Edinburgh South West,con_votes,12848
+Edinburgh South West,lab_votes,7478
+Edinburgh South West,ld_votes,4971
+Edinburgh South West,grn_votes,1265
+Edinburgh South West,brex_votes,625
+Edinburgh South West,oth_votes,114
+Edinburgh West,snp_votes,17997
+Edinburgh West,con_votes,9283
+Edinburgh West,lab_votes,4460
+Edinburgh West,ld_votes,21766
+Edinburgh West,grn_votes,1027
+Edinburgh West,oth_votes,0
+Falkirk,snp_votes,29351
+Falkirk,con_votes,14403
+Falkirk,lab_votes,6243
+Falkirk,ld_votes,3990
+Falkirk,grn_votes,1885
+Glasgow Central,snp_votes,19750
+Glasgow Central,con_votes,3698
+Glasgow Central,lab_votes,13276
+Glasgow Central,ld_votes,1952
+Glasgow Central,grn_votes,1429
+Glasgow East,snp_votes,18357
+Glasgow East,con_votes,5709
+Glasgow East,lab_votes,12791
+Glasgow East,ld_votes,1626
+Glasgow North,snp_votes,16982
+Glasgow North,con_votes,3806
+Glasgow North,lab_votes,11381
+Glasgow North,ld_votes,2394
+Glasgow North,grn_votes,1308
+Glasgow North,brex_votes,320
+Glasgow North East,snp_votes,15911
+Glasgow North East,con_votes,3558
+Glasgow North East,lab_votes,13363
+Glasgow North East,ld_votes,1093
+Glasgow North West,snp_votes,19678
+Glasgow North West,con_votes,6022
+Glasgow North West,lab_votes,11319
+Glasgow North West,ld_votes,2716
+Glasgow South,snp_votes,22829
+Glasgow South,con_votes,6237
+Glasgow South,lab_votes,13824
+Glasgow South,ld_votes,2786
+Glasgow South,grn_votes,1251
+Glasgow South,brex_votes,516
+Glasgow South West,snp_votes,17643
+Glasgow South West,con_votes,4224
+Glasgow South West,lab_votes,12743
+Glasgow South West,ld_votes,1435
+Glasgow South West,brex_votes,802
+Glenrothes,snp_votes,21234
+Glenrothes,con_votes,6920
+Glenrothes,lab_votes,9477
+Glenrothes,ld_votes,2639
+Glenrothes,brex_votes,1276
+Gordon,snp_votes,23885
+Gordon,con_votes,23066
+Gordon,lab_votes,3052
+Gordon,ld_votes,5913
+Inverclyde,snp_votes,19295
+Inverclyde,con_votes,6265
+Inverclyde,lab_votes,11783
+Inverclyde,ld_votes,2560
+"Inverness, Nairn, Badenoch and Strathspey",snp_votes,26247
+"Inverness, Nairn, Badenoch and Strathspey",con_votes,15807
+"Inverness, Nairn, Badenoch and Strathspey",lab_votes,4123
+"Inverness, Nairn, Badenoch and Strathspey",ld_votes,5846
+"Inverness, Nairn, Badenoch and Strathspey",grn_votes,1709
+"Inverness, Nairn, Badenoch and Strathspey",brex_votes,1078
+Kilmarnock and Loudon,snp_votes,24216
+Kilmarnock and Loudon,con_votes,11557
+Kilmarnock and Loudon,lab_votes,9009
+Kilmarnock and Loudon,ld_votes,2444
+Kilmarnock and Loudon,oth_votes,405
+Kirkcaldy and Cowdenbeath,snp_votes,16568
+Kirkcaldy and Cowdenbeath,con_votes,9449
+Kirkcaldy and Cowdenbeath,lab_votes,15325
+Kirkcaldy and Cowdenbeath,ld_votes,2903
+Kirkcaldy and Cowdenbeath,grn_votes,1628
+Kirkcaldy and Cowdenbeath,brex_votes,1132
+Lanark and Hamilton East,snp_votes,22243
+Lanark and Hamilton East,con_votes,17056
+Lanark and Hamilton East,lab_votes,10736
+Lanark and Hamilton East,ld_votes,3037
+Linlithgow and East Fakirk,snp_votes,25551
+Linlithgow and East Fakirk,con_votes,14285
+Linlithgow and East Fakirk,lab_votes,10517
+Linlithgow and East Fakirk,ld_votes,4393
+Linlithgow and East Fakirk,grn_votes,1184
+Linlithgow and East Fakirk,brex_votes,1257
+Linlithgow and East Fakirk,oth_votes,588
+Livingston,snp_votes,25617
+Livingston,con_votes,12182
+Livingston,lab_votes,11915
+Livingston,ld_votes,3457
+Livingston,grn_votes,1421
+Midlothian,snp_votes,20033
+Midlothian,con_votes,10467
+Midlothian,lab_votes,14328
+Midlothian,ld_votes,3393
+Moray,snp_votes,21599
+Moray,con_votes,22112
+Moray,lab_votes,2432
+Moray,ld_votes,2269
+Moray,ukip_votes,413
+Motherwell and Wishaw,snp_votes,20622
+Motherwell and Wishaw,con_votes,7150
+Motherwell and Wishaw,lab_votes,14354
+Motherwell and Wishaw,ld_votes,1675
+Motherwell and Wishaw,ukip_votes,619
+Na h-Eileanan an Iar,snp_votes,6531
+Na h-Eileanan an Iar,con_votes,3216
+Na h-Eileanan an Iar,lab_votes,4093
+Na h-Eileanan an Iar,ld_votes,637
+North Ayrshire and Arran,snp_votes,23376
+North Ayrshire and Arran,con_votes,14855
+North Ayrshire and Arran,lab_votes,6702
+North Ayrshire and Arran,ld_votes,2107
+North Ayrshire and Arran,grn_votes,1114
+North East Fife,snp_votes,18447
+North East Fife,con_votes,5961
+North East Fife,lab_votes,1707
+North East Fife,ld_votes,19763
+Ochil and South Perthshire,snp_votes,26882
+Ochil and South Perthshire,con_votes,22384
+Ochil and South Perthshire,lab_votes,4961
+Ochil and South Perthshire,ld_votes,3204
+Ochil and South Perthshire,ukip_votes,382
+Orkney and Shetland,snp_votes,7874
+Orkney and Shetland,con_votes,2287
+Orkney and Shetland,lab_votes,1550
+Orkney and Shetland,ld_votes,10381
+Orkney and Shetland,brex_votes,900
+Orkney and Shetland,oth_votes,168
+Paisley and Renfrewshire North,snp_votes,23353
+Paisley and Renfrewshire North,con_votes,11217
+Paisley and Renfrewshire North,lab_votes,11451
+Paisley and Renfrewshire North,ld_votes,3661
+Paisley and Renfrewshire South,snp_votes,21637
+Paisley and Renfrewshire South,con_votes,7571
+Paisley and Renfrewshire South,lab_votes,10958
+Paisley and Renfrewshire South,ld_votes,2918
+Perth and North Perthshire,snp_votes,27362
+Perth and North Perthshire,con_votes,19812
+Perth and North Perthshire,lab_votes,2471
+Perth and North Perthshire,ld_votes,3780
+Perth and North Perthshire,brex_votes,651
+"Ross, Skye and Lochaber",snp_votes,19263
+"Ross, Skye and Lochaber",con_votes,6900
+"Ross, Skye and Lochaber",lab_votes,2448
+"Ross, Skye and Lochaber",ld_votes,9820
+"Ross, Skye and Lochaber",brex_votes,710
+"Ross, Skye and Lochaber",oth_votes,728
+Rutherglen and Hamilton West,snp_votes,23775
+Rutherglen and Hamilton West,con_votes,8054
+Rutherglen and Hamilton West,lab_votes,18545
+Rutherglen and Hamilton West,ld_votes,2791
+Rutherglen and Hamilton West,ukip_votes,629
+Stirling,snp_votes,26895
+Stirling,con_votes,17641
+Stirling,lab_votes,4275
+Stirling,ld_votes,2867
+Stirling,grn_votes,942
+West Aberdeenshire and Kincardine,snp_votes,21909
+West Aberdeenshire and Kincardine,con_votes,22752
+West Aberdeenshire and Kincardine,lab_votes,2431
+West Aberdeenshire and Kincardine,ld_votes,6253
+West Dunbartonshire,snp_votes,22396
+West Dunbartonshire,con_votes,6436
+West Dunbartonshire,lab_votes,12843
+West Dunbartonshire,ld_votes,1890
+West Dunbartonshire,grn_votes,867
+West Dunbartonshire,oth_votes,708
