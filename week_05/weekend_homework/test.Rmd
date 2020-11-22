@@ -1,0 +1,29 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(here)
+library(?tidyverse)
+library(readxl)
+library
+```
+
+```{r}
+general_election_results
+```
+
+```{r}
+scotland <- map_data("world") %>%
+  filter(region == "UK" & subregion == "Scotland")
+```
+
+
+```{r}
+voting_results %>%
+  group_by(party) %>%
+  summarise(total_count = sum(vote_count)) 
+```
+
+
