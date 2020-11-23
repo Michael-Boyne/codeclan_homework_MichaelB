@@ -1760,11 +1760,13 @@ summary {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShoZXJlKVxubGlicmFyeSh0aWR5dmVyc2UpXG5saWJyYXJ5KHJlYWR4bClcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShoZXJlKVxubGlicmFyeSg/dGlkeXZlcnNlKVxuYGBgIn0= -->
 <pre class="r"><code>library(here)
-library(tidyverse)
-library(readxl)</code></pre>
+library(?tidyverse)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gbGlicmFyeShgP2AodGlkeXZlcnNlKSkgOiAncGFja2FnZScgbXVzdCBiZSBvZiBsZW5ndGggMVxuIn0= -->
+<pre><code>Error in library(`?`(tidyverse)) : &#39;package&#39; must be of length 1</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
@@ -1791,26 +1793,24 @@ library(readxl)</code></pre>
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudm90aW5nX3Jlc3VsdHMgJT4lXG4gIGdyb3VwX2J5KHBhcnR5KSAlPiVcbiAgc3VtbWFyaXNlKHRvdGFsX2NvdW50ID0gc3VtKHZvdGVfY291bnQpKSBcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudm90aW5nX3Jlc3VsdHMgJT4lXG4gIGdyb3VwX2J5KHBhcnR5KSAlPiVcbiAgc3VtbWFyaXNlKHRvdGFsX2NvdW50ID0gc3VtKHZvdGVfY291bnQpKSAlPiVcbiAgYXJyYW5nZSh2b3RlX2NvdW50KVxuYGBgIn0= -->
 <pre class="r"><code>voting_results %&gt;%
   group_by(party) %&gt;%
-  summarise(total_count = sum(vote_count)) </code></pre>
+  summarise(total_count = sum(vote_count)) %&gt;%
+  arrange(vote_count)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiYHN1bW1hcmlzZSgpYCB1bmdyb3VwaW5nIG91dHB1dCAob3ZlcnJpZGUgd2l0aCBgLmdyb3Vwc2AgYXJndW1lbnQpXG4ifQ== -->
-<pre><code>`summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiYHN1bW1hcmlzZSgpYCB1bmdyb3VwaW5nIG91dHB1dCAob3ZlcnJpZGUgd2l0aCBgLmdyb3Vwc2AgYXJndW1lbnQpXG5FcnJvcjogYXJyYW5nZSgpIGZhaWxlZCBhdCBpbXBsaWNpdCBtdXRhdGUoKSBzdGVwLiBcbnggQ291bGQgbm90IGNyZWF0ZSBhIHRlbXBvcmFyeSBjb2x1bW4gZm9yIGAuLjFgLlxu4oS5IGAuLjFgIGlzIGB2b3RlX2NvdW50YC5cblJ1biBgcmxhbmc6Omxhc3RfZXJyb3IoKWAgdG8gc2VlIHdoZXJlIHRoZSBlcnJvciBvY2N1cnJlZC5cbiJ9 -->
+<pre><code>`summarise()` ungrouping output (override with `.groups` argument)
+Error: arrange() failed at implicit mutate() step. 
+x Could not create a temporary column for `..1`.
+ℹ `..1` is `vote_count`.
+Run `rlang::last_error()` to see where the error occurred.</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6OCwibmNvbCI6Mn0sInJkZiI6Ikg0c0lBQUFBQUFBQUExMlJQVTdETUJUSFg5T21KSUZXa1hvQXBvNkpCQXl3SUJVSmNRQUVVcmZLVFVJYk5kaVI0NVN3Y1FydXdNQkJXQmhaRUJ0WFFHSnFlSFpzaWNSUzR2Zi9QYjh2Ky9weWZ1TE5QUURvUTMrSWZ4dE5zRzl2cm9JemdJR0ZvZ2NEY09WZW9YdUNob1ErZm81MmVFdWVWSXN0RTBtaGlSc3gyZ1lyM2dFWldiYUFrOFh0QTB5czI2Q2dlUXQ0NVNZMUJHQXNjOHpldnA1ay94ZlQ2YlBjWjUvYlJoK2VWMnIzSjkrS3YzNkEwc2MvQjBxL3ZFT3pXaFBibE55cjVMNmFXc09jY1BHb3hiNWdnbVNMaUpWVWRJSmR6aDVDazJBa0U4aFc2cnIrN1ZhSk1sS1lLZ1o2TVJFa3ZPTVlqMnJYQ2RsanVVZ1p4U0JMUG9qZENlN3hEdkJMS2p1SmcyaGQwazF3ZENvcktIK3pSdHAyL3RsV1U5T3FkUzViNXhvbWRKWFN4RFNQNzVoa1dveHhaRFZ4bVBNVUwwU1BnclFJMVVVWkVySE1FRFVjN1A0QWV6YUhDb2dDQUFBPSJ9 -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["party"],"name":[1],"type":["chr"],"align":["left"]},{"label":["total_count"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"brex_votes","2":"13243"},{"1":"con_votes","2":"692939"},{"1":"grn_votes","2":"28122"},{"1":"lab_votes","2":"511838"},{"1":"ld_votes","2":"263417"},{"1":"oth_votes","2":"3819"},{"1":"snp_votes","2":"1242380"},{"1":"ukip_votes","2":"3303"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[8]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKYGBge3J9CmxpYnJhcnkoaGVyZSkKbGlicmFyeSg/dGlkeXZlcnNlKQpsaWJyYXJ5KHJlYWR4bCkKbGlicmFyeQpgYGAKCmBgYHtyfQpnZW5lcmFsX2VsZWN0aW9uX3Jlc3VsdHMKYGBgCgpgYGB7cn0Kc2NvdGxhbmQgPC0gbWFwX2RhdGEoIndvcmxkIikgJT4lCiAgZmlsdGVyKHJlZ2lvbiA9PSAiVUsiICYgc3VicmVnaW9uID09ICJTY290bGFuZCIpCmBgYAoKCmBgYHtyfQp2b3RpbmdfcmVzdWx0cyAlPiUKICBncm91cF9ieShwYXJ0eSkgJT4lCiAgc3VtbWFyaXNlKHRvdGFsX2NvdW50ID0gc3VtKHZvdGVfY291bnQpKSAKYGBgCgoK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKYGBge3J9CmxpYnJhcnkoaGVyZSkKbGlicmFyeSg/dGlkeXZlcnNlKQpsaWJyYXJ5KHJlYWR4bCkKbGlicmFyeQpgYGAKCmBgYHtyfQpnZW5lcmFsX2VsZWN0aW9uX3Jlc3VsdHMKYGBgCgpgYGB7cn0Kc2NvdGxhbmQgPC0gbWFwX2RhdGEoIndvcmxkIikgJT4lCiAgZmlsdGVyKHJlZ2lvbiA9PSAiVUsiICYgc3VicmVnaW9uID09ICJTY290bGFuZCIpCmBgYAoKCmBgYHtyfQp2b3RpbmdfcmVzdWx0cyAlPiUKICBncm91cF9ieShwYXJ0eSkgJT4lCiAgc3VtbWFyaXNlKHRvdGFsX2NvdW50ID0gc3VtKHZvdGVfY291bnQpKSAlPiUKICBhcnJhbmdlKHZvdGVfY291bnQpCmBgYAoKCg==</div>
 
 
 

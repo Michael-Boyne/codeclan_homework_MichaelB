@@ -23,7 +23,8 @@ scotland <- map_data("world") %>%
 ```{r}
 voting_results %>%
   group_by(party) %>%
-  summarise(total_count = sum(vote_count)) 
+  summarise(total_count = sum(vote_count)) %>%
+  arrange(vote_count)
 ```
 
 
