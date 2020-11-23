@@ -24,7 +24,7 @@ ui <- fluidPage(
                  )
                ),
                mainPanel(
-                 plotOutput(outputId = "medal_plot")
+                   plotOutput(outputId = "medal_plot")
                )
              )
     ),
