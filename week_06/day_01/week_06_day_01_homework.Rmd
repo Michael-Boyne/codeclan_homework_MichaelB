@@ -1,0 +1,148 @@
+---
+title: "week06_day01_homework"
+output: html_notebook
+---
+
+```{r}
+library(janitor)
+library(prob)
+library(gtools)
+library(tidyverse)
+```
+
+```{r}
+titanic <- read_csv("data/titanic.csv")
+titanic
+```
+
+```{r}
+unique(titanic$class)
+```
+```{r}
+crew <- c("engineering crew", "victualling crew", "restaurant staff", "deck crew")
+passangers <- c("1st", "2nd", "3rd")
+
+reworked_titanic <- titanic %>%
+  mutate(
+    class = if_else(class %in% crew, "crew", class),
+    class = if_else(class %in% passangers, "passanger", class)
+  ) 
+
+    
+unique(reworked_titanic$class)
+```
+
+```{r}
+table <- reworked_titanic %>%
+  tabyl(class, survived)
+
+table <- table %>%
+  adorn_totals(where = c("row", "col")) %>%
+  adorn_percentages(denominator = "all") %>%
+  adorn_title()
+
+table
+```
+
+```{r}
+reworked_titanic$did_survive <- reworked_titanic$survived == "yes"
+
+titanic
+```
+
+```{r}
+prob_of_surviving <- reworked_titanic %>%
+  filter(did_survive == TRUE) %>%
+  summarise(prob = n() / nrow(reworked_titanic))
+
+prob_of_surviving
+```
+
+```{r}
+prob_survive_given_crew <- reworked_titanic %>%
+  filter(class == "crew") %>%
+  summarise(prob = sum(did_survive)/n())
+prob_survive_given_crew
+```
+
+```{r}
+prob_survive_given_crew <- reworked_titanic %>%
+  filter(class == "passanger") %>%
+  summarise(prob = sum(did_survive)/n())
+prob_survive_given_crew
+```
+
+1. If I roll a six-sided dice once, what is the probability of getting a number less than 5?
+
+```{r}
+s_die <- rolldie(1)
+s_die
+```
+```{r}
+s_die_rolls_less_than_five <- s_die %>%
+  filter(X1 < 5)%>%
+  summarise(prob = n() / nrow(s_die))
+s_die_rolls_less_than_five
+```
+
+
+2. How many outcomes are there in the sample space of an experiment in which we toss three dice?
+
+```{r}
+s_three_die <- rolldie(3) %>%
+  summarise(size_of_s = n())
+s_three_die
+```
+
+
+3. In an experiment where we roll four dice:
+
+i. how many outcomes are in the event total_equals_5_6_7 (i.e. the total of the four dice equals 5, 6 or 7)?
+
+```{r}
+s_four_dice <- rolldie(4) 
+s_four_dice
+```
+```{r}
+s_four_dice_with_count <- s_four_dice %>%
+  mutate(roll_count = X1 + X2 + X3 + X4) 
+
+s_four_dice_with_count %>%
+  filter(roll_count > 4, roll_count < 8) %>%
+  nrow()
+```
+
+ii. what is the probability of this event?
+
+```{r}
+s_four_dice_with_count %>%
+  filter(roll_count > 4, roll_count < 8) %>%
+  summarise(prob = n() / nrow(s_four_dice_with_count))
+```
+
+
+iii. what assumptions do we apply in answering part ii?
+
+The assumption being made is that all factors in the creation of the data are fair. (aka, all four dice are fair rolls)
+
+
+4. Five chairs are placed in a row in a room, along with five people of differing height. The people sit down randomly on the chairs. What is the probability that they sit in order of decreasing height, left to right?
+
+```{r}
+five_folks <- c("Amy, 1", "James, 2", "Carl, 3", "Jamie, 4", "Kerry, 5")
+
+five_folks <- as.tibble(
+  permutations(
+    n = 5,
+    r = 4,
+    v = five_folks,
+    repeats.allowed = FALSE
+  )
+)
+
+five_folks
+```
+
+4 times it will occur
+
+4/3/2/1   5/4/3/2   5/3/2/1   5/4/2/1 
