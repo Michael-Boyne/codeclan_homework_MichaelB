@@ -1,0 +1,81 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(prob)
+library(janitor)
+library(tidyverse)
+```
+
+```{r}
+items <- read_csv("data/20190928-items.csv") %>%
+  clean_names()
+```
+
+```{r}
+items
+```
+
+
+Find the brand with the highest numbers of phones in the dataset.
+
+```{r}
+items %>%
+  group_by(brand) %>%
+  count(brand) %>%
+  arrange(desc(n))
+```
+
+
+For your top brand, plot the distribution of phone ratings as a probability density, overlaying a fitted normal distribution. Do you think the normal distribution provides a good model of these ratings?
+
+```{r}
+items <- items %>%
+  filter(brand == "Samsung") %>%
+  mutate(prob = 1 / n())
+items
+```
+
+```{r}
+items %>%
+  ggplot(aes(x = rating, y = prob)) +
+  geom_col() + 
+  xlab("Ratings") + 
+  ylab("Probabiltiy")
+```
+
+```{r}
+items_stat <- items %>%
+  summarise(
+    num = n(),
+    mean = mean(rating),
+    sd = sd(rating)
+  )
+items_stat
+```
+
+```{r}
+items %>%
+  ggplot(aes(x = rating)) +
+  geom_histogram(aes(y = ..density..), col = "white", bins = 25) +
+  stat_function(
+    fun = dnorm,
+    args = list(
+      mean = items_stat$mean,
+      sd = items_stat$sd
+    ),
+    col = "red"
+  )
+```
+
+
+
+
+We can be more quantitative in comparing the distribution of top brand ratings with a normal distribution. You calculated the mean() and sd() of your distribution in an earlier question. Use these values to calculate the proportions of ratings within one-, two- and three standard deviations of the mean. Compare these proportions with those you expect for a normal distribution.
+
+```{r}
+
+```
+
