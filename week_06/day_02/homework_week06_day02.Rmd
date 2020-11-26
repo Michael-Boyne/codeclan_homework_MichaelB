@@ -76,6 +76,22 @@ items %>%
 We can be more quantitative in comparing the distribution of top brand ratings with a normal distribution. You calculated the mean() and sd() of your distribution in an earlier question. Use these values to calculate the proportions of ratings within one-, two- and three standard deviations of the mean. Compare these proportions with those you expect for a normal distribution.
 
 ```{r}
-
+items %>%
+  filter(rating >= items_stat$mean - items_stat$sd) %>%
+  filter(rating <= items_stat$mean + items_stat$sd) %>%
+  summarise(prop_within_1sd = n() / nrow(items))
 ```
 
+```{r}
+items %>%
+  filter(rating >= items_stat$mean - 2 * items_stat$sd) %>%
+  filter(rating <= items_stat$mean + 2 * items_stat$sd) %>%
+  summarise(prop_within_2sd = n() / nrow(items))
+```
+
+```{r}
+items %>%
+  filter(rating >= items_stat$mean - 3 * items_stat$sd) %>%
+  filter(rating <= items_stat$mean + 3 * items_stat$sd) %>%
+  summarise(prop_within_3sd = n() / nrow(items))
+```
