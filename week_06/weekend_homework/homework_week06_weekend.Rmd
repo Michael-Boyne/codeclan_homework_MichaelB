@@ -1,0 +1,195 @@
+---
+title: "homework_week_06_weekend"
+output: html_notebook
+---
+
+
+```{r}
+library(infer)
+library(janitor)
+library(tidyverse)
+```
+
+Explore the dataset and familiarise yourself with it.
+
+```{r}
+data(msleep)
+```
+
+```{r}
+glimpse(msleep)
+```
+
+
+1. Jabberwockies sleep for around 7 hours a night, on average. Perform an appropriate statistical test to determine whether the mean sleep_total in the sampled population of animal types differs from the typical value for jabberwockies.
+
+H0: the mean sleep_total for sampled population is the same as the mean sleep_total for jabberwockies
+Ha: the mean sleep_total for sampled population is different from the mean sleep_total for jabberwockies
+
+H0: population mean_sleep_total = 7
+Ha: population_mean_sleep_total != 7
+
+α=0.05
+
+```{r}
+msleep %>%
+  ggplot(aes(y = sleep_total)) +
+  geom_boxplot() +
+  coord_flip()
+```
+
+
+
+```{r}
+observed_stat <- msleep %>%
+  summarise(mean_rating = mean(sleep_total))
+
+observed_stat
+```
+
+```{r}
+null_distribution<- msleep %>% 
+  specify(response = sleep_total) %>% 
+  hypothesize(null = "point", mu = 7) %>% 
+  generate(reps = 10000, type = "bootstrap") %>% 
+  calculate(stat = "mean")
+```
+```{r}
+null_distribution
+```
+
+```{r}
+null_distribution %>%
+  visualise(bins = 30) +
+  shade_p_value(obs_stat = observed_stat$mean_rating, direction = "both")
+```
+
+```{r}
+p_value <- null_distribution %>%
+  get_p_value(obs_stat = observed_stat$mean_rating, direction = "both")
+
+p_value
+```
+
+
+
+
+
+2. Perform an appropriate statistical test to determine whether omnivores sleep for significantly longer than herbivores, on average.
+
+Assuming the conventional significance level α = 0.05
+
+H0: omni_sleep - herbi_sleep = 0
+Ha: omni_sleep - herbi_sleep > 0
+
+```{r}
+diet_msleep <- msleep %>%
+  filter(vore %in% c("omni", "herbi"))
+```
+
+```{r}
+diet_msleep %>%
+  ggplot(aes(y = sleep_total, x = vore)) +
+  geom_boxplot()
+```
+
+```{r}
+null_distribution_2 <- diet_msleep %>%
+  specify(response = sleep_total, explanatory = vore) %>%
+  hypothesise(null = "independence") %>%
+  generate(reps = 10000, type = "permute") %>%
+  calculate(stat = "diff in means", order = c("omni", "herbi"))
+```
+
+```{r}
+observed_stat <- diet_msleep %>%
+  specify(response = sleep_total, explanatory = vore) %>%
+  calculate(stat = "diff in means", order = c("omni", "herbi"))
+
+observed_stat
+```
+
+```{r}
+null_distribution_2 %>%
+  visualise() +
+  shade_p_value(obs_stat = observed_stat, direction = "right")
+```
+
+```{r}
+null_distribution_2 %>%
+  get_p_value(obs_stat = observed_stat, direction = "right")
+```
+
+This is a p_value larger than the critical value of 0.05 and so fail to reject the null hypothesis H0, based on the evidence in our data to suggest that the average sleep for
+
+
+Perform an appropriate statistical test to determine whether the proportion of domesticated animal types in the population of animal types is greater than 5%.
+[Hint - think about creating an is_domesticated variable for the analysis]
+
+```{r}
+animals <- msleep %>%
+  filter(!is.na(conservation))
+```
+
+```{r}
+animals %>%
+  group_by(conservation) %>%
+  summarise(prop = n()/nrow(animals)) %>%
+  filter(conservation == "domesticated")
+```
+
+```{r}
+animals_domesticated <- msleep %>%
+  filter(!is.na(conservation)) %>%
+  mutate(is_domesticated = ifelse(conservation == "domesticated", "domesticated", "not_domesticated"))
+animals_domesticated
+```
+
+```{r}
+animals_domesticated %>%
+  group_by(is_domesticated) %>%
+  summarise(prop = n() / nrow(animals_domesticated))
+```
+
+
+# 1.2.1 Defining the Hypothesis
+
+1. 
+comparing means from two paired samples
+
+H0 : μ0 = 4
+Ha : μ0 ≠ 4
+
+H0: Awareness of shop is not changed after flyering.
+Ha: Awareness of shop is significantly increased after flyering 
+
+
+2.
+
+H0 : H0  is true, i.e. the probability of ‘success’ is set to π 0.
+Ha: πa 
+
+H0: CTR not changed when banner at top of page.
+Ha: CTR changed significantly after position of banner on top of page 
+
+3.
+
+H0 : μ average_width = average_width_sample
+Ha: μ average_width ≠ average_width_sample
+
+H0: The mean width of part is the same as the mean of the sample
+Ha: the mean width of the part is different from the mean of the sample
+
+# 1.2.2 Interpreting the results
+
+1. 
+
+p value is greater than significance level. So, we lack sufficient evidence to reject H0. Based on the sample
+
+2.
+
+p-value is less than significance level. So, we reject H0 in favour of Ha.
+
+3.
+
+p-value is very high. So, reject H0.
