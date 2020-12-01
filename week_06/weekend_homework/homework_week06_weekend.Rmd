@@ -158,7 +158,7 @@ animals_domesticated %>%
 comparing means from two paired samples
 
 H0 : μ0 = 4
-Ha : μ0 ≠ 4
+Ha : μ0 > 4
 
 H0: Awareness of shop is not changed after flyering.
 Ha: Awareness of shop is significantly increased after flyering 
@@ -192,4 +192,4 @@ p-value is less than significance level. So, we reject H0 in favour of Ha.
 
 3.
 
-p-value is very high. So, reject H0.
+p-value is very high. So, again we fail to reject H0.
