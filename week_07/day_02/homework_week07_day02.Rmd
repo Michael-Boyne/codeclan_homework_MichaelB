@@ -94,10 +94,33 @@ forecast_1 %>%
 
 6. Test your model accuracy : choose a training data set from your main dataset, build a forecast on the training set, and then plot the training set forecast against the real data. Calculate model accuracy.
 ```{r}
+train <- nyc_bikes_filled %>%
+  mutate(month = month(date)) %>%
+  filter(month <= 10)
 
+bikes_fit_test <- train %>%
+  model(
+    naive = NAIVE(bike_hire_counts), 
+    mean_model = MEAN(bike_hire_counts), 
+    snaive = SNAIVE(bike_hire_counts))
+
+bikes_fit_test
+```
+```{r}
+bikes_forecast_test <- bikes_fit_test %>%
+  fabletools::forecast(h = 12*6)
+
+bikes_forecast_test %>%
+  autoplot(train, level = NULL) + 
+  autolayer(nyc_bikes_filled, color = "black")
 ```
 
 7. Look at your forecast plots and accuracy values. Describe your results. Are your models a good fit for the data? If not, why not? What would you suggest doing with the data if you were expected to present these back to a client? For example, would you ask for more data? Would you test a different model?
+
+```{r}
+
+```
+
 
 8. Make a simple ggplot (geom_point) which plots the start longitude and latitudes of each bike. Create a separate facet for each bike_id. Colour the dots in by month of use. What does this tell you about what month each bike was used most in?
 

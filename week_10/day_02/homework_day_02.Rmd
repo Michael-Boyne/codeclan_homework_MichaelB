@@ -1,0 +1,78 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+```
+
+* MVP
+
+*** Load the data into a dataframe project
+
+```{r}
+pro_man <- read_csv("data/project_management.csv")
+```
+
+
+
+```{r}
+pro_man
+```
+
+explanitory variables -> independent variables -> for this example estimated_length
+single outcome -> dependent variables -> for this example actual_length
+
+*** Plot the data, taking estimated_length as the independent variable and actual_length as the dependent variable.
+```{r}
+pro_man %>%
+  ggplot() +
+  aes(x = estimated_length, y = actual_length) +
+  geom_point()
+```
+
+*** Calculate the correlation coefficient of estimated_length and actual_length and interpret the value you obtain.
+
+
+*** Perform a simple linear regression using actual_length as the dependent variable, and estimated_length as the independent variable. Save the model object to a variable.
+```{r}
+model <- lm(formula = estimated_length ~ actual_length, data = pro_man)
+model
+```
+```{r}
+fitted(model)
+```
+
+
+*** Interpret the regression coefficient of estimated_length (i.e. slope, gradient) you obtain from the model. How do you interpret the r2 value reported by the model?
+
+```{r}
+library(modelr)
+```
+
+```{r}
+pro_man <- pro_man %>%
+  add_predictions(model) %>%
+  add_residuals(model)
+pro_man
+```
+```{r}
+pro_man %>%
+  ggplot(aes(x = estimated_length)) +
+  geom_point(aes(y = actual_length)) +
+  geom_line(aes(y = pred), col = "red")
+```
+```{r}
+pro_man %>%
+  ggplot(aes(x = estimated_length, y = actual_length)) +
+  geom_point() +
+  geom_abline(
+    intercept = model$coefficients[1],
+    slope = model$coefficients[2],
+    col = "red"
+  )
+```
+
+
+*** Is the relationship statistically significant? Remember, to assess this you need to check the p-value of the regression coefficient (or slope/gradient). But you should first check the regression diagnostic plots to see if the p-value will be reliable (don’t worry about any outlier points you see in the diagnostic plots, we’ll return to them in the extension).
