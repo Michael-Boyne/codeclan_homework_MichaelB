@@ -34,10 +34,14 @@ pro_man %>%
 
 *** Calculate the correlation coefficient of estimated_length and actual_length and interpret the value you obtain.
 
+```{r}
+pro_man %>%
+  summarise(corr_coeff = cor(estimated_length, actual_length))
+```
 
 *** Perform a simple linear regression using actual_length as the dependent variable, and estimated_length as the independent variable. Save the model object to a variable.
 ```{r}
-model <- lm(formula = estimated_length ~ actual_length, data = pro_man)
+model <- lm(actual_length ~ estimated_length, data = pro_man)
 model
 ```
 ```{r}
@@ -52,27 +56,20 @@ library(modelr)
 ```
 
 ```{r}
-pro_man <- pro_man %>%
-  add_predictions(model) %>%
-  add_residuals(model)
-pro_man
+summary(model)
 ```
 ```{r}
-pro_man %>%
-  ggplot(aes(x = estimated_length)) +
-  geom_point(aes(y = actual_length)) +
-  geom_line(aes(y = pred), col = "red")
+library(broom)
+glance(model)
+tidy(model)
 ```
-```{r}
-pro_man %>%
-  ggplot(aes(x = estimated_length, y = actual_length)) +
-  geom_point() +
-  geom_abline(
-    intercept = model$coefficients[1],
-    slope = model$coefficients[2],
-    col = "red"
-  )
-```
-
 
 *** Is the relationship statistically significant? Remember, to assess this you need to check the p-value of the regression coefficient (or slope/gradient). But you should first check the regression diagnostic plots to see if the p-value will be reliable (don’t worry about any outlier points you see in the diagnostic plots, we’ll return to them in the extension).
+
+```{r}
+library(ggfortify)
+autoplot(model)
+```
+
+
+

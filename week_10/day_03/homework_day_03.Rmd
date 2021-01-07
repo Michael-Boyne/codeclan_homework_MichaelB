@@ -1,0 +1,116 @@
+---
+title: "Homework day 3 week 10"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+```
+
+* 1 MVP 
+
+*** 1. Load the diamonds.csv data set and undertake an initial exploration of the data. 
+```{r}
+diamonds <- read_csv("data/diamonds.csv")
+```
+```{r}
+summary(diamonds)
+```
+```{r}
+diamonds
+```
+
+*** 2. We expect the carat of the diamonds to be strong correlated with the physical dimensions x, y and z. Use ggpairs() to investigate correlations between these four variables.
+```{r}
+library(GGally)
+
+carat_xyz <- diamonds %>%
+  select(carat, x, y, z)
+
+ggpairs(carat_xyz)
+```
+all corr above 0.9 so very high correlations 
+
+*** 3. So, we do find significant correlations. Let’s drop columns x, y and z from the dataset, in preparation to use only carat going forward.
+```{r}
+diamonds_no_xyz <- diamonds %>%
+  select(-c(x, y, z))
+diamonds_no_xyz
+```
+
+*** 4. We are interested in developing a regression model for the price of a diamond in terms of the possible predictor variables in the dataset.
+
+*** i. Use ggpairs() to investigate correlations between price and the predictors (this may take a while to run, don’t worry, make coffee or something).
+```{r}
+ggpairs(diamonds_no_xyz)
+```
+
+*** ii. Perform further ggplot visualisations of any significant correlations you find.
+```{r}
+diamonds_no_xyz %>%
+  ggplot(aes(x = carat, y = price)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE)
+```
+```{r}
+model <- lm(price ~ carat, data = diamonds_no_xyz)
+model
+```
+```{r}
+library(ggfortify)
+autoplot(model)
+```
+
+*** 5. Shortly we may try a regression fit using one or more of the categorical predictors cut, clarity and color, so let’s investigate these predictors:
+
+*** i. Investigate the factor levels of these predictors. How many dummy variables do you expect for each of them?
+```{r}
+unique(diamonds_no_xyz$cut)
+
+```
+
+cut <- 4
+clarity <- 7
+color <- 6
+
+*** ii. Use the dummy_cols() function in the fastDummies package to generate dummies for these predictors and check the number of dummies in each case.
+```{r}
+library(fastDummies)
+
+dummy_cut <- diamonds_no_xyz %>%
+  dummy_cols(select_columns = "cut", remove_first_dummy = TRUE, remove_selected_columns = TRUE)
+
+dummy_cut
+```
+
+```{r}
+dummy_color <- diamonds_no_xyz %>%
+  dummy_cols(select_columns = "color", remove_first_dummy = TRUE, remove_selected_columns = TRUE)
+
+dummy_color
+```
+
+```{r}
+dummy_clarity <- diamonds_no_xyz %>%
+  dummy_cols(select_columns = "clarity", remove_first_dummy = TRUE, remove_selected_columns = TRUE)
+
+dummy_clarity
+```
+
+*** 6. Going forward we’ll let R handle dummy variable creation for categorical predictors in regression fitting (remember lm() will generate the correct numbers of dummy levels automatically, absorbing one of the levels into the intercept as a reference level)
+
+*** i. First, we’ll start with simple linear regression. Regress price on carat and check the regression diagnostics.
+```{r}
+
+```
+
+*** ii. Run a regression with one or both of the predictor and response variables log() transformed and recheck the diagnostics. Do you see any improvement?
+```{r}
+
+```
+
+*** iii. Let’s use log() transformations of both predictor and response. Next, experiment with adding a single categorical predictor into the model. Which categorical predictor is best? [Hint - investigate r2 values]
+```{r}
+
+```
+
