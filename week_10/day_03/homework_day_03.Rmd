@@ -78,24 +78,14 @@ color <- 6
 library(fastDummies)
 
 dummy_cut <- diamonds_no_xyz %>%
-  dummy_cols(select_columns = "cut", remove_first_dummy = TRUE, remove_selected_columns = TRUE)
+  dummy_cols(select_columns = c("cut", "clarity", "color"), remove_first_dummy = TRUE, remove_selected_columns = TRUE)
 
 dummy_cut
 ```
 
-```{r}
-dummy_color <- diamonds_no_xyz %>%
-  dummy_cols(select_columns = "color", remove_first_dummy = TRUE, remove_selected_columns = TRUE)
 
-dummy_color
-```
 
-```{r}
-dummy_clarity <- diamonds_no_xyz %>%
-  dummy_cols(select_columns = "clarity", remove_first_dummy = TRUE, remove_selected_columns = TRUE)
 
-dummy_clarity
-```
 
 *** 6. Going forward we’ll let R handle dummy variable creation for categorical predictors in regression fitting (remember lm() will generate the correct numbers of dummy levels automatically, absorbing one of the levels into the intercept as a reference level)
 
