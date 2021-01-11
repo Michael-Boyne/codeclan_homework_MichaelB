@@ -1,0 +1,86 @@
+---
+title: "Weekend Homework Week 10 Part 1"
+output: html_notebook
+---
+
+# Libraries and data loaded in 
+```{r}
+library(tidyverse)
+library(janitor)
+```
+```{r}
+avacado <- read_csv("data/avocado.csv") %>%
+  clean_names()
+```
+```{r}
+avacado
+```
+
+# Data investigation 
+```{r}
+unique(tidy_avacado$type_organic)
+```
+
+# Preparing dataset 
+```{r}
+avacado$date <- format(avacado$date, format = "%Y")
+avacado
+```
+```{r}
+library(fastDummies)
+tidy_avacado <- avacado %>%
+  select(-c(x1, date, region, total_volume, x4770, x_large_bags, total_bags)) %>%
+  mutate(type = as.factor(type))
+tidy_avacado
+```
+
+```{r}
+library(GGally)
+```
+```{r}
+tidy_avacado %>%
+  ggpairs(aes(colour = type), alpha = 0.5)
+```
+
+
+
+
+```{r}
+library(leaps)
+regsubsets_forward <- regsubsets(average_price ~ . , data = tidy_avacado, nvmax = 6, method = "forward") 
+sum_regsubsets_forward <- summary(regsubsets_forward)
+sum_regsubsets_forward
+```
+```{r}
+plot(sum_regsubsets_forward$adjr2, type = "b")
+```
+```{r}
+plot(regsubsets_forward, scale = "adjr2")
+```
+```{r}
+sum_regsubsets_forward$rsq
+```
+
+
+First predictor: type
+Second predictor: year
+Thirst predictors: Avacado hass size or (x4046, x4225, x4770)
+
+formula = average_price ~ type + year + x4046 + x4225
+
+from this we have an rsq of 0.402 or 40% 
+
+```{r}
+model <- lm(average_price ~ type + year + x4046 + x4225, data = tidy_avacado)
+summary(model)
+```
+
+All predictors have a P value of < 0.05 indicating a significant correlation.
+
+Diagonostics 
+```{r}
+par(mfrow = c(2, 2))
+plot(model)
+```
+diagnositics are OK but not amazing. 
+

@@ -1,0 +1,72 @@
+---
+title: "Weekend homework - week 10 - part 2"
+output: html_document
+---
+
+# Homework Quiz
+
+1. I want to predict how well 6 year-olds are going to do in their final school exams. Using the following variables am I likely under-fitting, fitting well or over-fitting? Postcode, gender, reading level, score in maths test, date of birth, family income.
+
+A: fitting well 
+
+2. If I have two models, one with an AIC score of 34,902 and the other with an AIC score of 33,559 which model should I use?
+
+A: 33,559 - lower AIC score is better
+
+3. I have two models, the first with: r-squared: 0.44, adjusted r-squared: 0.43. The second with: r-squared: 0.47, adjusted r-squared: 0.41. Which one should I use?
+
+A: First model. A higher adjusted r-squared is better
+
+4. I have a model with the following errors: RMSE error on test set: 10.3, RMSE error on training data: 10.4. Do you think this model is over-fitting?
+
+A: yes.
+
+5. How does k-fold validation work?
+
+A: Data is split, typically into 10, you make 10 models each time one of the fold is held out as a test set, and train the 
+   data on the other 9 folds.
+
+6. What is a validation set? When do you need one?
+
+A: This is an additional set that is used to validate a model made using another dataset
+
+7. Describe how backwards selection works.
+
+A: start with all possible predictors and one at a time until a satisfied r2 can be reached or run out of predictors.
+
+8. Describe how best subset selection works.
+
+A: subset selection (or exhaustive search) simulates the best possible set of predictors for each size of model
+
+9. It is estimated on 5% of model projects end up being deployed. What actions can you take to maximise the likelihood of your model being deployed?
+
+A: A high rsq 
+
+10. What metric could you use to confirm that the recent population is similar to the development population?
+
+A: a comparison of score distributions between the development dataset and the recently aquired dataset
+   that is extracted from the production system
+
+11. How is the Population Stability Index defined? What does this mean in words?
+
+A: Using a new dataset to that was not used to develop the model to compare and predict probability from training data.
+
+12. Above what PSI value might we need to start to consider rebuilding or recalibrating the model
+
+A: 0.1 < PSI < 0.2
+
+13. What are the common errors that can crop up when implementing a model?
+
+A: 
+
+14. After performance monitoring, if we find that the discrimination is still satisfactory but the accuracy has deteriorated, what is the recommended action?
+
+A: 
+
+15. Why is it important to have a unique model identifier for each model?
+
+A: so each model can be uniquely identified 
+
+16. Why is it important to document the modelling rationale and approach?
+
+A: 
