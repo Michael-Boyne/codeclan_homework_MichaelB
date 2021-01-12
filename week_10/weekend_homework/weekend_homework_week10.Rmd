@@ -26,11 +26,14 @@ unique(tidy_avacado$type_organic)
 avacado$date <- format(avacado$date, format = "%Y")
 avacado
 ```
+
+must change year to factor so that the model treats it right instead of a specific value 
 ```{r}
 library(fastDummies)
 tidy_avacado <- avacado %>%
   select(-c(x1, date, region, total_volume, x4770, x_large_bags, total_bags)) %>%
-  mutate(type = as.factor(type))
+  mutate(type = as.factor(type)) %>%
+  mutate(year = as.factor(year))
 tidy_avacado
 ```
 
@@ -68,7 +71,7 @@ Thirst predictors: Avacado hass size or (x4046, x4225, x4770)
 
 formula = average_price ~ type + year + x4046 + x4225
 
-from this we have an rsq of 0.402 or 40% 
+from this we have an rsq of 0.44 or 43% 
 
 ```{r}
 model <- lm(average_price ~ type + year + x4046 + x4225, data = tidy_avacado)
@@ -83,4 +86,10 @@ par(mfrow = c(2, 2))
 plot(model)
 ```
 diagnositics are OK but not amazing. 
+
+```{r}
+library(relaimpo)
+
+relaimpo(model)
+```
 
