@@ -1,0 +1,74 @@
+---
+title: "Weekend Homework - Clustering"
+output: html_document
+---
+
+
+# Clustering weekend homework
+
+```{r}
+library(tidyverse)
+library(janitor)
+library(fastDummies)
+library(broom)
+library(rpart)
+library(rpart.plot)
+library(factoextra)
+```
+
+```{r}
+customers <- read_csv("data/mall_customers.csv") %>%
+  clean_names()
+```
+
+You have been provided some customer data from a shopping centre. Do some exploratory analysis on the data. Comment on findings.
+
+We are interested in creating a marketing campaign to target customers based on their spending score and annual income. Perform a k-means clustering to find if there are meaningful clusters in the data to target the customers.
+
+Perform k-means clustering and chose a value of k.
+```{r}
+selected_customers <- customers %>%
+  select(annual_income_k, spending_score_1_100)
+```
+```{r}
+customers_scaling <- selected_customers %>%
+  mutate_all(scale)
+
+summary(customers_scaling)
+```
+```{r}
+fviz_nbclust(customers_scaling, kmeans, method = "wss", nstart = 25)
+```
+```{r}
+fviz_nbclust(customers_scaling, kmeans, method = "gap_stat")
+```
+```{r}
+fviz_nbclust(customers_scaling, kmeans, method = "silhouette", nstart = 25)
+```
+a k of 5 generally seems to be the optimal choice.
+
+Visualise the clustering for your chosen value of k.
+```{r}
+clustered_customers <- kmeans(customers_scaling, 5, nstart = 25)
+
+clustered_customers
+```
+```{r}
+clustered_customers$size
+```
+```{r}
+clusters <- augment(clustered_customers, customers)
+
+ggplot(clusters, aes(annual_income_k, spending_score_1_100, colour = .cluster)) +
+  geom_point()
+```
+
+
+Do you think the clustering seems a good fit for this data?
+
+Visually it appears that k-means clustering is a good fit for this data. visually after scaling the data it does appear to have 5 distinct clusters. When choosing the k value too, there were two methods that indicated that 5 was a cluster value that had significance. 
+
+Comment on the attributes on one or two of the clusters (maybe even give them a label if you like - like in section 4.1 of the ‘Segmentation & clustering intro’ lesson).
+
+The 4th .cluster (or the light blue cluster) was a cluster that had a low annual income and also had a low spending score. 
+
