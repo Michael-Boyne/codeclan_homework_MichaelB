@@ -1,0 +1,40 @@
+---
+title: "Homework day 03 week 12"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+cars <- read_csv("data/car_dekho_details.csv")
+```
+
+```{r}
+clean_cars <- cars %>%
+  select(-name) %>%
+  mutate(fuel = as.factor(fuel)) %>%
+  mutate(seller_type = as.factor(seller_type)) %>%
+  mutate(transmission = as.factor(transmission)) %>%
+  mutate(owner = as.factor(owner))
+```
+```{r fig.height=8, fig.width=8}
+library(GGally)
+ggpairs(clean_cars)
+```
+
+```{r}
+clean_cars %>%
+  ggplot(aes(x = transmission, y = selling_price)) +
+  geom_boxplot() 
+```
+```{r}
+model <- lm(selling_price ~ transmission + year + seller_type, data = clean_cars)
+par(mfrow = c(2, 2))
+plot(model)
+```
+```{r}
+summary(model)
+```
+
